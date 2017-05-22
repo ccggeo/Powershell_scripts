@@ -1,29 +1,34 @@
 ﻿#Grabs workstations dependant on naming scheme 
-$name = Get-ADComputer -filter * | ? { $_.Name -like "*name*" }  
-
-$output =@()
+$name = Get-ADComputer -filter * | ? { $_.Name -like "*name*" } 
+$computers =@()
 
 $name | % {
-$line = '' | select comp, smb1status 
 
-    invoke-command -ComputerName $_ -ScriptBlock{
+   $computers += $_.name
 
-    $smb1enabled = (Get-WindowsOptionalFeature -online | Where-Object {$_.FeatureName -eq "smb1protocol"}).state
-    
- 
 }
 
-   $line.comp = $_.name
-    $line.smb1status = $smb1enabled
-     
 
+$output =@()
+   
+
+
+foreach ($comp in $computers){
+$line = '' | select comp, state 
+
+$state = invoke-command -computername $comp -scriptblock {(Get-WindowsOptionalFeature -online | Where-Object {$_.FeatureName -eq "smb1protocol"})
+
+
+$smb1enabled = $state.state 
+
+$smb1enabled}
+
+
+$line.comp = $comp
+$line.state = $state.state 
      $output += $line
+ }
+ 
 
-
-}
-
+ 
 $output | Out-GridView 
-
-
-
-    
