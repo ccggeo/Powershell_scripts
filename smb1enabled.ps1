@@ -12,21 +12,20 @@ $name | % {
 $output =@()
    
 
-
 foreach ($comp in $computers){
-$line = '' | select comp, state 
+    
+    $line = '' | select comp, state 
 
-$state = invoke-command -computername $comp -scriptblock {(Get-WindowsOptionalFeature -online | Where-Object {$_.FeatureName -eq "smb1protocol"})
+    $state = invoke-command -computername $comp -scriptblock {(Get-WindowsOptionalFeature -online | Where-Object {$_.FeatureName -eq "smb1protocol"})
 
+      }
+        
 
-$smb1enabled = $state.state 
-
-$smb1enabled}
-
-
-$line.comp = $comp
-$line.state = $state.state 
-     $output += $line
+        $line.comp = $comp
+        $line.state = $state.state
+        
+         
+        $output += $line
  }
  
 
