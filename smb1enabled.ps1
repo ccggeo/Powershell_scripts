@@ -1,38 +1,9 @@
-﻿#Grabs workstations dependant on naming scheme 
-$computers =@()
+﻿
 
 
-$name = Get-ADComputer -filter * | ? { $_.Name -like "*DW*"  } 
+$computers = Get-ADComputer  -searchbase '***' -filter * -Properties * 
 
-
-
-$name | % {
-   $computers += $_.name
-}
-
-$name = Get-ADComputer -filter * | ? { $_.Name -like "*VW*"  } 
-
-
-
-$name | % {
-   $computers += $_.name
-}
-
-$name = Get-ADComputer -filter * | ? { $_.Name -like "*LW*"  } 
-
-
-
-$name | % {
-   $computers += $_.name
-}
-
-$name = Get-ADComputer -filter * | ? { $_.Name -like "*TW*"  } 
-
-$name | % {
-   $computers += $_.name
-}
-
-$computers
+$computers.name 
 
 
 $output =@()
