@@ -50,7 +50,7 @@ Configuration w32tm
         {
             Ensure      = "Present" 
             Key         = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\ParametersRegistry"
-            ValueName   = "Size"
+            ValueName   = "SMB1"
             ValueData   = "0"
             ValueType   = "Dword"
         }
