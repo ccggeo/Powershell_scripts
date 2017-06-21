@@ -42,3 +42,22 @@ Configuration w32tm
  #Start-DscConfiguration -path C:\Services -wait -Verbose -force
 
 
+ Configuration smb1 
+{Import-DscResource –ModuleName 'PSDesiredStateConfiguration'
+       Node $env:ComputerName
+    {
+        Registry smb1
+        {
+            Ensure      = "Present" 
+            Key         = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\ParametersRegistry"
+            ValueName   = "Size"
+            ValueData   = "0"
+            ValueType   = "Dword"
+        }
+      }
+}
+
+
+smb1 -outputpath c:\Registry
+
+#Start-DscConfiguration -path C:\Registry -wait -Verbose -force
