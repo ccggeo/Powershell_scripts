@@ -15,7 +15,7 @@ $line.C = $C
 $line.D = $D
 $line.user = (get-adcomputer $_).description 
 
-write-host "processing" $_ 
+write-host "processing" $_ -BackgroundColor Green
  
  
  $output += $line 
