@@ -51,4 +51,4 @@ robocopy C:\Users\$local_username\Desktop\Signature_creator\_Desktop \\$target_c
 
 
 Set-ADComputer $new_computer -Description $name
-set-adcomputer $target_computer -Description ""$name"_old"
+set-adcomputer $target_computer -Description $name'_old'
