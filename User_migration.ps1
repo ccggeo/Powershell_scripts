@@ -1,14 +1,15 @@
 ﻿#edit these variables to change values of signature
 $prompt1 = read-host -Prompt "Input username"
-$prompt2 = read-host -Prompt "Confirm username"
+$prompt2 = read-host -Prompt "Confirm username" 
 
 if ($prompt2 -eq $prompt1)
-
-
-{$target_computer = read-host -Prompt "Input old computer name"
+{
+$target_computer = read-host -Prompt "Input old computer name"
+$target_computer2 = read-host -Prompt "Confirm old computer name"
+if($target_computer2 -eq $target_computer)
+{
 $extension = read-host -Prompt "Input Extension"
 $new_computer = read-host -Prompt "Input computer name to copy profile to"
-
 $user = get-aduser $prompt1 -Properties *
 ###
 $name = $user.name 
@@ -56,18 +57,19 @@ robocopy C:\Users\$local_username\Desktop\Signature_creator\_Desktop \\$target_c
 
 
 Set-ADComputer $new_computer -Description $name
-set-adcomputer $target_computer -Description $name'_old'}
+set-adcomputer $target_computer -Description $name'_old'
+
+
+}
+
+else {write-host 'computer names do not match ' -BackgroundColor red }
+
+}
 
 
 
 else {
-
-
-write-host 'Computer name does not match' -BackgroundColor red
-
-
-
-
+write-host 'AD username does not match' -BackgroundColor red
 }
 
     
