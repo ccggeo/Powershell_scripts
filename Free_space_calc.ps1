@@ -1,4 +1,6 @@
-﻿
+﻿#all figures in GB
+
+
 $computers = ''
 
 $output= @()
