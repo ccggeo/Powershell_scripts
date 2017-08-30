@@ -15,4 +15,6 @@ add-adgroupmember -identity $_.name -members $new_user
 
 }
 
+write-host 'New user' $new_user 'now has Membership of:' -ForegroundColor green 
 
+ Get-ADPrincipalGroupMembership -identity $new_user | select name 
