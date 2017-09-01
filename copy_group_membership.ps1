@@ -12,7 +12,6 @@ $group_membership | % {
 
 add-adgroupmember -identity $_.name -members $new_user
 
-
 }
 
 write-host 'New user' $new_user 'now has Membership of:' -ForegroundColor green 
