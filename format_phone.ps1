@@ -1,19 +1,24 @@
-﻿ function format_phone{
-    $aduser = get-aduser <user> -Properties * 
-    $sfbphone = $aduser.officephone 
-    $sfbphone
+﻿ $ad_usersss= Get-ADUser -SearchBase "" -Filter 'Enabled -eq $True' -Properties *
+ $sfbphone = $ad_usersss
 
-    $sfbphone = $sfbphone.replace(' ','')
+ $sfbphone | %{
+ 
+    $phone = $_.officephone
 
-    $sfbphone= $sfbphone.Insert(3," ")
-    $sfbphone= $sfbphone.Insert(4,"(")
-    $sfbphone= $sfbphone.Insert(5,"0")
-    $sfbphone= $sfbphone.Insert(6,")")
-    $sfbphone= $sfbphone.Insert(11," ")
-    $sfbphone= $sfbphone.Insert(15," ")
+    write-host "old format: $phone" -ForegroundColor darkYellow
 
-    set-aduser -Identity $aduser -officephone $SFBphone
-    $sfbphone
-    }
+    $phone = $phone.replace(' ','')
+    $phone = $phone.replace('(','')
+    $phone = $phone.replace(')','')
 
-format_phone
+
+    $phone= $phone.Insert(3," ")
+    $phone= $phone.Insert(4,"(")
+    $phone= $phone.Insert(5,"0")
+    $phone= $phone.Insert(6,")")
+    $phone= $phone.Insert(11," ")
+    $phone= $phone.Insert(15," ")
+
+    set-aduser -Identity $_ -officephone $phone
+    write-host "new format: $phone" -ForegroundColor Green
+}
