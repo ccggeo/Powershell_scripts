@@ -1,14 +1,17 @@
-﻿##get open files 
-$openFiles = get-smbopenfile -CimSession <server>  | Where-Object {$_.path -like "**"}
+﻿$openFiles = get-smbopenfile -CimSession <server>  | Where-Object {$_.path -like "**"} 
 
-##sort by path
-$openFiles | Sort-Object -Property path
+$openFiles | select   ClientUserName, path, FileId
 
 $fileID = $openFiles.fileid
-$fileID
 
-$fileID | %{
-Close-SmbOpenFile -CimSession <server> $_ }
-$fileID
+$x = read-host 'Would you like to close these files?'
+
+if ($x -eq "Y" -or $x -eq "y")
+{
+   $fileID | %{
+    Close-SmbOpenFile -fileid $_ -CimSession <server>  -Force}
+
+   }
+
 
 
