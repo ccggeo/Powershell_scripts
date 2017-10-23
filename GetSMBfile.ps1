@@ -1,4 +1,4 @@
-﻿##get open files
+﻿##get open files 
 $openFiles = get-smbopenfile -CimSession <server>  | Where-Object {$_.path -like "**"}
 
 ##sort by path
