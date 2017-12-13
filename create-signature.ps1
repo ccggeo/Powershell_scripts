@@ -15,7 +15,6 @@ $username = $user.mailnickname
 $local_username = ""
 $Signature = Get-Content C:\Users\$local_username\Desktop\Signature_creator\signature_template_.txt
 
-
 write-host "Creating $name signature" -BackgroundColor blue
 
 #template in HTML with placeholders
