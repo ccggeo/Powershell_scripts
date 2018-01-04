@@ -13,8 +13,22 @@ function predeparture
     Param
     (
         [Parameter(Mandatory=$true)]
-        $emailstaff
+        $emailstaff,
+        [Parameter(Mandatory=$true)]
+        $username
     )
+
+            $user = get-aduser $username -Properties * 
+        $new_user_name = $user.name 
+        $new_user_email = $user.mail
+        $new_user_username = $user.mailNickname
+        $new_user_first_name = $user.GivenName
+        $manager = $user.manager 
+        $managerobj = get-aduser $manager -Properties *
+        $manager_mail = $managerobj.mail
+        $date = get-date -uformat "%Y%m%d"
+
+    
     if ($emailstaff -eq $TRUE)
     {
         
