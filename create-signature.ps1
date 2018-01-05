@@ -4,6 +4,7 @@ $new_user_name = Read-host 'Enter username of new signature'
 #creates the signature locally 
 function create-signature {
 
+try{
 
  Param
         (
@@ -33,6 +34,9 @@ function create-signature {
     invoke-expression C:\Users\$local_username\Desktop\Signature_creator\PS_Tests\final.htm
     
     }
+        catch { write-host "Error returned, see CategoryInfo in exception" -BackgroundColor DarkRed}
+
+
+    }
 
 create-signature -adusername $new_user_name
-
