@@ -3,13 +3,13 @@
 .Synopsis
    Functions to delete staff from systems and inform appropriate staff
 .EXAMPLE
-   removebsuser -username -emailstaff $TRUE
+   removebsuser -username <username> -emailstaff $TRUE
 #>
 
 function predeparture 
     {
 
-        [CmdletBinding()]
+     #   [CmdletBinding()]
     Param
     (
         [Parameter(Mandatory=$true)]
@@ -81,7 +81,7 @@ Set-Mailbox $new_user_email -HiddenFromAddressListsEnabled $true
 # remove name from associated computer
 #function to remove name from all associated computers in AD
 $dec_ = $new_user_name
-$leaver_computer = (get-adcomputer -Properties * -filter * | Where-Object {$_.description  -like "*$dec_*"}).name
+$leaver_computer = (get-adcomputer -Properties * -filter * | ? {$_.description  -like "*$dec_*"}).name
 $leaver_computer | %{
 
 Set-ADComputer $_  -description ' '}
@@ -124,7 +124,7 @@ $users = Invoke-RestMethod -Method Get -Uri $URL -Headers $HTTPHeaders
 $data = $users.user
 $data | select name, id
 
-$userdata = $data | Where-Object {$_.name -like "*$new_user_name*"} 
+$userdata = $data | ? {$_.name -like "*$new_user_name*"} 
 
 if ($userdata.name -ne $null){
 $user_id = $userdata.id 
@@ -139,7 +139,7 @@ $users = Invoke-RestMethod -Method Get -Uri $URL -Headers $HTTPHeaders
 $data = $users.user
 $data | select name, id
 
-$userdata = $data | Where-Object {$_.name -like "*$new_user_name*"} 
+$userdata = $data | ? {$_.name -like "*$new_user_name*"} 
 $user_id = $userdata.id 
 
 Invoke-RestMethod -Method delete -uri "$URL/$user_id.json" -Headers $HTTPHeaders 
