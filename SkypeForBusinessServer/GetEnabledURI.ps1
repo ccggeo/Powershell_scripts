@@ -5,11 +5,8 @@ $username = (get-csuser).samaccountname
 
 $username | % {
 
-
-
-
         $x = (get-csuser $_)
-        $enabled = $x.ExUmEnabled
+        $enabled = $x.enabled
 
      
 
