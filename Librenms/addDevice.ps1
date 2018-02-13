@@ -6,10 +6,14 @@ $URL = ''
 
 $body = @{}
 $body.add("hostname", "")
-$body.add("Community", "")
+$body.add("community", "")
 $body.add("force_add", "$TRUE")
-$body.add("version", "v1")
+$body.add("version", "")
+
 
 $JSON = $body | ConvertTo-Json 
 
 Invoke-RestMethod -Method POST -Uri $URL -Headers $HTTPHeaders -Body $JSON -Verbose
+
+
+
