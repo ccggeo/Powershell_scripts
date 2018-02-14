@@ -15,7 +15,7 @@ Get-SwisData -SwisConnection $swis -Query 'SELECT NodeID, DisplayName, Descripti
 
 
 #get properties of Solarwinds object 
-Get-SwisObject $swis -Uri "swis://SOLARWINDS.blacksun.com/Orion/Orion.Nodes/NodeID=217" | Sort-Object -Property key
+
 
 #$newNodeUri = New-SwisObject $swis -EntityType "Orion.NodesCustomProperties" -Properties $newNodeProps
 
