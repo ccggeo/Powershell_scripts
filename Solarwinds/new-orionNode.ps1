@@ -4,7 +4,7 @@ import-module Swispowershell
 $swis = Connect-Swis 
 
 
-$ip = "10.0.0.118"
+$ip = ""
 
 # add a node
 $newNodeProps = @{
