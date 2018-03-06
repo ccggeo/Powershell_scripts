@@ -1,5 +1,4 @@
-﻿$x = 
-
+﻿$x =""
 
 $output= @()
 
@@ -12,26 +11,15 @@ if($o -ne $null){write-host $_ }
 
 
 $y = New-Object PSCustomObject 
-$y | add-member -MemberType NoteProperty -Name "Primarysmtpaddress" -Value $o.Primarysmtpaddress
+$y | add-member -MemberType NoteProperty -Name "Primarysmtpaddress" -Value $_
 $exists = if($o.Primarysmtpaddress -ne $Null){echo "Exists"} else{echo "Doesnt exist"}
 $y |  add-member -MemberType NoteProperty -Name "exists" -Value $exists
 $output += $y
 
+    }
 
+$output |FT
 
-
-
-
-
-
-
-}
-
-$output |export-csv c:\temp\denise-export.csv
-
-
-
-#create PS object and use hash tables
 <#
 $y = New-Object PSCustomObject 
 $y = -Property([ordered] @{"Name" = $o.Name
