@@ -3,28 +3,26 @@ $c =
 
 $output= @()
 $c | %{
-invoke-command -computername $_ -ScriptBlock {
-    
-    $line= '' | Select hostname,excelversion, user
-    $dec = (get-adobject  -filter * -identity $_ -Properties *).description
-    $excelPath =  'C:\Program Files (x86)\Microsoft Office\Office15\EXCEL.EXE' 
 
-    $excelProperty = Get-ItemProperty $excelPath 
+    $line= '' | Select hostname,excelversion
     #Creating a new PS-Object 
-    $x = New-Object  Psobject  
+    $y = New-Object  Psobject  
+    $x = 
+       $y | Add-Member NoteProperty -Name "ExcelProductVersion" -Value (invoke-command -computername $_ -ScriptBlock {
     
-    #excel 
-    $x | Add-Member NoteProperty -Name "ExcelProductVersion" -Value $excelProperty.VersionInfo.ProductVersion 
+    $excelPath =  'C:\Program Files (x86)\Microsoft Office\Office15\EXCEL.EXE' 
+    $excelProperty = (Get-ItemProperty $excelPath -Filter *)
+    $excelproperty.VersionInfo.ProductVersion 
+       #excel 
 
-    $y = $x.ExcelProductVersion
-
-    $line.hostname = hostname
+   })
+ 
+ 
+    $line.hostname = $_
     $line.excelversion = $y
-   }
-
-          $line
-        $output += $line
+    $output += $line
 
 }
- $output | FT 
+ $output | FT
 #$excelProperty | select-object -Property 
+
