@@ -7,14 +7,12 @@ $a = @() #array holding name data
 $itemnumber = $wu.count 
 $a += $wu
 $output= @() #holding wu name data 
+$i = 0
 
-            $First = ($a[0]).name
-            $second = ($a[0]).ismanaged
-            $third = ($a[0]).IsDefaultAUService
-           
-           
-           # $fourth = $a[3]
-           # $fifth = $a[4]
+Do{
+            $First = ($a[$i]).name
+            $second = ($a[$i]).ismanaged
+            $third = ($a[$i]).IsDefaultAUService
 
 
 			$obj = New-Object -TypeName PSObject
@@ -25,61 +23,12 @@ $output= @() #holding wu name data
 
 $output += $obj 
 
-            $First = ($a[1]).name
-            $second = ($a[1]).ismanaged
-            $third = ($a[1]).IsDefaultAUService
-           
-			$obj = New-Object -TypeName PSObject
-			$obj | Add-Member -MemberType NoteProperty -Name Name -Value $first
-			$obj | Add-Member -MemberType NoteProperty -Name Ismanaged -Value $second
-            $obj | Add-Member -MemberType NoteProperty -Name IsDefaultAUService -Value $third
-            $obj | Add-Member -MemberType NoteProperty -Name hostname -Value "$hostname"
-
-$output += $obj 
 
 
-            $First = ($a[2]).name
-            $second = ($a[2]).ismanaged
-            $third = ($a[2]).IsDefaultAUService
-           
-           
-           # $fourth = $a[3]
-           # $fifth = $a[4]
+    $i++
+    
+    
+    }Until ($i -eq $itemnumber)
 
+    $output
 
-			$obj = New-Object -TypeName PSObject
-			$obj | Add-Member -MemberType NoteProperty -Name Name -Value $first
-			$obj | Add-Member -MemberType NoteProperty -Name Ismanaged -Value $second
-            $obj | Add-Member -MemberType NoteProperty -Name IsDefaultAUService -Value $third
-            $obj | Add-Member -MemberType NoteProperty -Name hostname -Value "$hostname"
-
-
-            $First = ($a[3]).name
-            $second = ($a[3]).ismanaged
-            $third = ($a[3]).IsDefaultAUService
-           
-           
-
-
-			$obj = New-Object -TypeName PSObject
-			$obj | Add-Member -MemberType NoteProperty -Name Name -Value $first
-			$obj | Add-Member -MemberType NoteProperty -Name Ismanaged -Value $second
-            $obj | Add-Member -MemberType NoteProperty -Name IsDefaultAUService -Value $third
-            $obj | Add-Member -MemberType NoteProperty -Name hostname -Value "$hostname"
-
-$output += $obj 
-         
-            $First = ($a[4]).name
-            $second = ($a[4]).ismanaged
-            $third = ($a[4]).IsDefaultAUService
-           
-           
-
-			$obj = New-Object -TypeName PSObject
-			$obj | Add-Member -MemberType NoteProperty -Name Name -Value $first
-			$obj | Add-Member -MemberType NoteProperty -Name Ismanaged -Value $second
-            $obj | Add-Member -MemberType NoteProperty -Name IsDefaultAUService -Value $third
-            $obj | Add-Member -MemberType NoteProperty -Name hostname -Value "$hostname"
-
-$output += $obj 
-         
