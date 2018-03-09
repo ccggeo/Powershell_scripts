@@ -1,0 +1,1 @@
+﻿Set-MailboxAutoReplyConfiguration -identity <username> -AutoReplyState Enabled -InternalMessage "" -ExternalMessage ""
