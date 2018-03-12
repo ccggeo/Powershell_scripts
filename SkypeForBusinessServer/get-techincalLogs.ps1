@@ -4,7 +4,7 @@ mkdir "c:\temp\sfb\techincallogs\$u"
 
 
 
-$items = (get-childitem "\\$target\c$\Users\$u\AppData\Local\Microsoft\Office\16.0\Lync\Tracing" | ? {$_.Extension -Like ".uccapilog"}).name 
+$items = (gci  "\\$target\c$\Users\$u\AppData\Local\Microsoft\Office\16.0\Lync\Tracing" | ? {$_.Extension -Like ".uccapilog"}).name | sort Lastwritetime | select -last 1
 
 $items | % {
 
