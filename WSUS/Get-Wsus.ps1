@@ -1,4 +1,4 @@
-﻿$wsuscomps = "bs-fp-0551DW", "bs-fp-0637DW", "bs-fp-0635DW"
+﻿$wsuscomps = ", "", "
 
 $output= @()
 
