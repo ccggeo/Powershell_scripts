@@ -1,4 +1,4 @@
-﻿$computers= Get-ADComputer -SearchBase "OU=Windows,OU=Black Sun Workstations,DC=blacksun,DC=com" -Filter {enabled -eq $true} 
+﻿$computers= Get-ADComputer -SearchBase "" -Filter {enabled -eq $true} 
  
 $output= @()
 $computers| % {
