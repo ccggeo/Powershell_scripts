@@ -1,4 +1,4 @@
-﻿$server  = "bs-fp-ex-mb3.blacksun.com"
+﻿$server  = ""
 
 
 #By Sender
